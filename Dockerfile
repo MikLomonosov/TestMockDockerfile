@@ -12,12 +12,12 @@ RUN mvn install
 FROM openjdk:11-jre
 ARG artifactid
 ARG version
-ENV artifact ${artifact}-${version}.jar
+ENV artifact ${artifactid}-${version}.jar
 RUN apt update\
  && apt-get install -y wget
 WORKDIR /app
 RUN wget http://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.7.2/jolokia-jvm-1.7.2.jar -O /app/jolokia.jar
-COPY --from=build /app/target/${artifact} /app
+COPY --from=build /app/target/${artifactid} /app
 EXPOSE 8080
 EXPOSE 8778
 ENTRYPOINT ["sh", "-c"]
