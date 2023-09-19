@@ -21,4 +21,4 @@ COPY --from=build /app/target/${artifact} /app
 EXPOSE 8080
 EXPOSE 8778
 ENTRYPOINT ["sh", "-c"]
-CMD ["java -jar -javaagent:jolokia.jar=port=8778, host=0.0.0.0 ${artifact}"]
+CMD ["java -jar -javaagent:jolokia.jar=port=8778,host=0.0.0.0 ${artifact}"]
